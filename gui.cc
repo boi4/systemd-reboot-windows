@@ -1,7 +1,11 @@
 #include <iostream>
 
+#define GUILITE_ON	// Do not define this macro upon GuiLite.h once more
+#include "GuiLite/GuiLite.h"
+
 #include "systemdvars.h"
 #include "util.h"
+
 
 
 
