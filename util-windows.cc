@@ -65,7 +65,6 @@ bool getPrivilege(std::string privilegeName) {
 }
 
 bool getPriviliges() {
-    std::cout << "SeSystemEnvironmentPrivilege" << std::endl;
     if(!getPrivilege("SeSystemEnvironmentPrivilege")) {
         std::cout << getLastErrorAsString() << std::endl;
         return false;

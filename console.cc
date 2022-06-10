@@ -6,11 +6,14 @@
 
 
 int main() {
+
+    getPriviliges();
+
     std::vector<std::string> entries = getSystemdBootEntries();
 
 
     if (entries.size() == 0) {
-        // std::cout << getLastErrorAsString() << std::endl;
+        std::cout << getLastErrorAsString() << std::endl;
         return 1;
     }
 
