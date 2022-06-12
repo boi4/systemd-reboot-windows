@@ -1,8 +1,9 @@
 #ifdef _WIN32
-#include "util.h"
+#include "lib/util.h"
 
 #include <windows.h>
 #include <iostream>
+#include <filesystem>
 
 
 
@@ -78,6 +79,15 @@ bool getPriviliges() {
 
 bool reboot() {
     return 0 == InitiateShutdownA(NULL, NULL, 0, SHUTDOWN_RESTART, SHTDN_REASON_MAJOR_APPLICATION | SHTDN_REASON_MINOR_OTHER | SHTDN_REASON_FLAG_PLANNED);
+}
+
+
+std::filesystem::path get_config_file_path() {
+    // Beware, brain-compiled code ahead!
+    char *appdata = getenv("APPDATA");
+    std::filesystem::path result{appdata};
+    result = result / "systemd-reboot";
+    return result;
 }
 
 #endif
