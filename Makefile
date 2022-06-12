@@ -4,18 +4,20 @@ CPPFLAGS = -Wall -Werror -ggdb
 
 LIB_SRC = $(wildcard src/lib/*.cc)
 
-CONSOLE_TARGET = systemd-reboot-console
 ifeq ($(OS),Windows_NT)
 CONSOLE_TARGET = systemd-reboot-console.exe
+else ifeq ($(shell uname -s),Linux)
+CONSOLE_TARGET = systemd-reboot-console
 endif
 CONSOLE_SRC = src/console/console.cc
 
 
-TRAY_TARGET = systemd-reboot-tray
-TRAY_FLAGS = 
 ifeq ($(OS),Windows_NT)
 TRAY_TARGET = systemd-reboot-tray.exe
 TRAY_FLAGS = -mwindows
+else ifeq ($(shell uname -s),Linux)
+TRAY_TARGET = systemd-reboot-tray
+TRAY_FLAGS = $(shell pkg-config --cflags --libs appindicator3-0.1)
 endif
 TRAY_SRC = src/tray/tray.cc
 

@@ -25,10 +25,12 @@ bool reboot() {
 std::filesystem::path get_config_file_path() {
     // Beware, brain-compiled code ahead!
     char *appdata = getenv("XDG_CONFIG_HOME");
+    std::filesystem::path result;
     if (appdata != NULL) {
-        std::filesystem::path result{appdata};
+        result = std::filesystem::path(appdata);
     } else {
-        std::filesystem::path result{getenv("HOME") / ".config"};
+        result = std::filesystem::path(getenv("HOME"));
+        result = result / ".config";
     }
     result = result / "systemd-reboot";
     return result;
