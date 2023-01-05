@@ -36,6 +36,16 @@ Run either `systemd-reboot-console(.exe)` or `systemd-reboot-tray(.exe)` dependi
 Note that on windows you will need to run the programs as administrator and on linux with root permissions (i.e. sudo).
 
 
+## How to Auto-Start on Windows
+
+1. Start `Task Scheduler`
+2. Go to `Action->Create Task`
+3. Give it a name and check `Run with highest priviliges`
+4. Go to `Actions->New` and `Browse` select `systemd-reboot-tray.exe` and press `Ok`
+5. Go to `Triggers->New` and choose `At log in` and press `Ok`
+6. Finally press `Ok` to create the task
+
+
 ## Screenshots
 
 Tray icon in Windows 11:
